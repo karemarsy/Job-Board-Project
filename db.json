@@ -1,0 +1,46 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Frontend Developer",
+      "company": "TechCorp Inc.",
+      "location": "Remote",
+      "type": "Full-time",
+      "salary": "$70,000 - $90,000",
+      "description": "We are looking for a skilled Frontend Developer to join our team...",
+      "requirements": ["React", "TypeScript", "3+ years experience"],
+      "postedDate": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "title": "Backend Developer",
+      "company": "StartupXYZ",
+      "location": "San Francisco, CA",
+      "type": "Full-time",
+      "salary": "$80,000 - $110,000",
+      "description": "Join our backend team to build scalable applications...",
+      "requirements": ["Node.js", "PostgreSQL", "5+ years experience"],
+      "postedDate": "2024-01-20"
+    },
+    {
+      "id": 3,
+      "title": "Full Stack Developer",
+      "company": "WebSolutions",
+      "location": "New York, NY",
+      "type": "Contract",
+      "salary": "$60/hour",
+      "description": "We need a versatile full stack developer...",
+      "requirements": ["React", "Node.js", "MongoDB"],
+      "postedDate": "2024-01-25"
+    }
+  ],
+  "applications": [],
+  "users": [
+    {
+      "id": 1,
+      "email": "demo@example.com",
+      "password": "password123",
+      "name": "Demo User"
+    }
+  ]
+}
