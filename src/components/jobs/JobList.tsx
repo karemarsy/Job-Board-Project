@@ -1,14 +1,14 @@
 // src/components/jobs/JobList.tsx
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
-import { fetchJobs, setPage } from '@/lib/redux/slices/jobSlice';
-import { Job } from '@/types';
-import JobCard from './JobCard';
-import { LoadingState, SkeletonCard } from '@/components/ui/Loading';
-import Button from '@/components/ui/Button';
-import { ChevronLeft, ChevronRight, Briefcase } from 'lucide-react';
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { fetchJobs, setPage } from "@/lib/redux/slices/jobSlice";
+import { Job } from "@/types";
+import JobCard from "./JobCard";
+import { LoadingState, SkeletonCard } from "@/components/ui/Loading";
+import Button from "@/components/ui/Button";
+import { ChevronLeft, ChevronRight, Briefcase } from "lucide-react";
 
 interface JobListProps {
   onJobSelect: (job: Job) => void;
@@ -16,22 +16,26 @@ interface JobListProps {
   isAuthenticated: boolean;
 }
 
-const JobList: React.FC<JobListProps> = ({ 
-  onJobSelect, 
-  onJobApply, 
-  isAuthenticated 
+const JobList: React.FC<JobListProps> = ({
+  onJobSelect,
+  onJobApply,
+  isAuthenticated,
 }) => {
   const dispatch = useAppDispatch();
-  const { jobs, loading, error, filters, pagination } = useAppSelector((state) => state.jobs);
+  const { jobs, loading, error, filters, pagination } = useAppSelector(
+    (state) => state.jobs
+  );
 
   useEffect(() => {
-    dispatch(fetchJobs({
-      search: filters.search,
-      type: filters.type,
-      location: filters.location,
-      page: pagination.page,
-      limit: pagination.limit,
-    }));
+    dispatch(
+      fetchJobs({
+        search: filters.search,
+        type: filters.type,
+        location: filters.location,
+        page: pagination.page,
+        limit: pagination.limit,
+      })
+    );
   }, [dispatch, filters, pagination.page, pagination.limit]);
 
   const handlePageChange = (newPage: number) => {
@@ -51,13 +55,17 @@ const JobList: React.FC<JobListProps> = ({
           <p className="text-sm">{error}</p>
         </div>
         <Button
-          onClick={() => dispatch(fetchJobs({
-            search: filters.search,
-            type: filters.type,
-            location: filters.location,
-            page: pagination.page,
-            limit: pagination.limit,
-          }))}
+          onClick={() =>
+            dispatch(
+              fetchJobs({
+                search: filters.search,
+                type: filters.type,
+                location: filters.location,
+                page: pagination.page,
+                limit: pagination.limit,
+              })
+            )
+          }
           variant="outline"
         >
           Try Again
@@ -82,11 +90,13 @@ const JobList: React.FC<JobListProps> = ({
     return (
       <div className="text-center py-12">
         <Briefcase className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
+        <h3 className="text-lg font-medium text-gray-900 mb-2">
+          No jobs found
+        </h3>
         <p className="text-gray-500 mb-6">
           {filters.search || filters.type || filters.location
-            ? 'Try adjusting your search criteria or filters.'
-            : 'There are no jobs available at the moment.'}
+            ? "Try adjusting your search criteria or filters."
+            : "There are no jobs available at the moment."}
         </p>
       </div>
     );
@@ -99,9 +109,7 @@ const JobList: React.FC<JobListProps> = ({
         <p className="text-gray-600">
           Showing {jobs.length} of {pagination.total} jobs
           {(filters.search || filters.type || filters.location) && (
-            <span className="text-blue-600 ml-1">
-              (filtered)
-            </span>
+            <span className="text-blue-600 ml-1">(filtered)</span>
           )}
         </p>
         <p className="text-sm text-gray-500">
@@ -144,16 +152,13 @@ const JobList: React.FC<JobListProps> = ({
             {[...Array(Math.min(5, totalPages))].map((_, index) => {
               const pageNumber = Math.max(
                 1,
-                Math.min(
-                  pagination.page - 2 + index,
-                  totalPages - 4 + index
-                )
+                Math.min(pagination.page - 2 + index, totalPages - 4 + index)
               );
-              
+
               if (pageNumber > totalPages) return null;
-              
+
               const isActive = pageNumber === pagination.page;
-              
+
               return (
                 <Button
                   key={pageNumber}

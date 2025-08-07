@@ -1,21 +1,20 @@
 // src/components/jobs/JobDetails.tsx
-'use client';
+"use client";
 
-import React from 'react';
-import { Job } from '@/types';
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import { formatDate, formatRelativeDate } from '@/lib/utils';
-import { 
-  MapPin, 
-  Building, 
-  Clock, 
-  DollarSign, 
-  X,
+import Button from "@/components/ui/Button";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import { formatDate, formatRelativeDate } from "@/lib/utils";
+import { Job } from "@/types";
+import {
+  Building,
   Calendar,
-  Users,
   CheckCircle,
-} from 'lucide-react';
+  DollarSign,
+  MapPin,
+  Users,
+  X,
+} from "lucide-react";
+import React from "react";
 
 interface JobDetailsProps {
   job: Job;
@@ -24,11 +23,11 @@ interface JobDetailsProps {
   isAuthenticated: boolean;
 }
 
-const JobDetails: React.FC<JobDetailsProps> = ({ 
-  job, 
-  onClose, 
-  onApply, 
-  isAuthenticated 
+const JobDetails: React.FC<JobDetailsProps> = ({
+  job,
+  onClose,
+  onApply,
+  isAuthenticated,
 }) => {
   const handleApply = () => {
     onApply(job);
@@ -53,32 +52,36 @@ const JobDetails: React.FC<JobDetailsProps> = ({
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-4">
-                <h1 className="text-2xl font-bold text-gray-900">{job.title}</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {job.title}
+                </h1>
                 <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
                   {job.type}
                 </span>
               </div>
-              
+
               <div className="space-y-2 mb-4">
                 <div className="flex items-center text-gray-600">
                   <Building className="w-5 h-5 mr-3" />
                   <span className="font-medium">{job.company}</span>
                 </div>
-                
+
                 <div className="flex items-center text-gray-600">
                   <MapPin className="w-5 h-5 mr-3" />
                   <span>{job.location}</span>
                 </div>
-                
+
                 <div className="flex items-center text-green-600">
                   <DollarSign className="w-5 h-5 mr-3" />
                   <span className="font-medium">{job.salary}</span>
                 </div>
-                
+
                 <div className="flex items-center text-gray-500">
                   <Calendar className="w-5 h-5 mr-3" />
                   <span>Posted on {formatDate(job.postedDate)}</span>
-                  <span className="ml-2 text-sm">({formatRelativeDate(job.postedDate)})</span>
+                  <span className="ml-2 text-sm">
+                    ({formatRelativeDate(job.postedDate)})
+                  </span>
                 </div>
               </div>
             </div>
@@ -99,7 +102,9 @@ const JobDetails: React.FC<JobDetailsProps> = ({
           {/* Job description */}
           <Card>
             <CardHeader>
-              <h3 className="text-lg font-semibold text-gray-900">Job Description</h3>
+              <h3 className="text-lg font-semibold text-gray-900">
+                Job Description
+              </h3>
             </CardHeader>
             <CardContent>
               <div className="prose prose-sm max-w-none">
@@ -114,7 +119,9 @@ const JobDetails: React.FC<JobDetailsProps> = ({
           {job.requirements && job.requirements.length > 0 && (
             <Card>
               <CardHeader>
-                <h3 className="text-lg font-semibold text-gray-900">Requirements</h3>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Requirements
+                </h3>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
@@ -132,7 +139,9 @@ const JobDetails: React.FC<JobDetailsProps> = ({
           {/* Company info placeholder */}
           <Card>
             <CardHeader>
-              <h3 className="text-lg font-semibold text-gray-900">About {job.company}</h3>
+              <h3 className="text-lg font-semibold text-gray-900">
+                About {job.company}
+              </h3>
             </CardHeader>
             <CardContent>
               <div className="flex items-start space-x-4">
@@ -141,8 +150,9 @@ const JobDetails: React.FC<JobDetailsProps> = ({
                 </div>
                 <div className="flex-1">
                   <p className="text-gray-700 mb-3">
-                    {job.company} is a leading company in their industry, committed to innovation 
-                    and providing excellent opportunities for professional growth.
+                    {job.company} is a leading company in their industry,
+                    committed to innovation and providing excellent
+                    opportunities for professional growth.
                   </p>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center text-gray-600">
@@ -165,15 +175,12 @@ const JobDetails: React.FC<JobDetailsProps> = ({
                 Ready to apply?
               </h4>
               <p className="text-blue-700 mb-4">
-                Sign in or create an account to apply for this position and track your applications.
+                Login or create an account to apply for this position and track
+                your applications.
               </p>
               <div className="space-x-3">
-                <Button variant="outline">
-                  Sign In
-                </Button>
-                <Button>
-                  Create Account
-                </Button>
+                <Button variant="outline">Login</Button>
+                <Button>Create Account</Button>
               </div>
             </div>
           )}
@@ -183,11 +190,7 @@ const JobDetails: React.FC<JobDetailsProps> = ({
           <Button variant="outline" onClick={onClose}>
             Close
           </Button>
-          {isAuthenticated && (
-            <Button onClick={handleApply}>
-              Apply Now
-            </Button>
-          )}
+          {isAuthenticated && <Button onClick={handleApply}>Apply Now</Button>}
         </div>
       </div>
     </div>

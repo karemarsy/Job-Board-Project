@@ -1,27 +1,26 @@
-// src/components/auth/AuthModal.tsx
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import LoginForm from './LoginForm';
-import RegisterForm from './RegisterForm';
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialMode?: 'login' | 'register';
+  initialMode?: "login" | "register";
 }
 
-const AuthModal: React.FC<AuthModalProps> = ({ 
-  isOpen, 
-  onClose, 
-  initialMode = 'login' 
+const AuthModal: React.FC<AuthModalProps> = ({
+  isOpen,
+  onClose,
+  initialMode = "login",
 }) => {
-  const [mode, setMode] = useState<'login' | 'register'>(initialMode);
+  const [mode, setMode] = useState<"login" | "register">(initialMode);
 
   if (!isOpen) return null;
 
   const toggleMode = () => {
-    setMode(mode === 'login' ? 'register' : 'login');
+    setMode(mode === "login" ? "register" : "login");
   };
 
   return (
@@ -29,7 +28,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
       <div className="relative max-w-md w-full">
         <button
           onClick={onClose}
-          className="absolute -top-2 -right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 z-10"
+          className="absolute top-0 right-0 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10"
           aria-label="Close modal"
         >
           <svg
@@ -44,8 +43,8 @@ const AuthModal: React.FC<AuthModalProps> = ({
             <path d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
-        
-        {mode === 'login' ? (
+
+        {mode === "login" ? (
           <LoginForm onToggleForm={toggleMode} />
         ) : (
           <RegisterForm onToggleForm={toggleMode} />

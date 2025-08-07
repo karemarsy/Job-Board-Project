@@ -11,7 +11,7 @@ export interface Job {
   title: string;
   company: string;
   location: string;
-  type: 'Full-time' | 'Part-time' | 'Contract' | 'Remote';
+  type: "Full-time" | "Part-time" | "Contract" | "Remote";
   salary: string;
   description: string;
   requirements: string[];
@@ -56,7 +56,7 @@ export interface ApplicationState {
   applications: JobApplication[];
   loading: boolean;
   error: string | null;
-  submissionStatus: 'idle' | 'loading' | 'success' | 'error';
+  submissionStatus: "idle" | "loading" | "success" | "error";
 }
 
 export interface LoginCredentials {

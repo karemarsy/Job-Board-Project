@@ -1,12 +1,12 @@
 // src/components/layout/Header.tsx
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
-import { logout } from '@/lib/redux/slices/authSlice';
-import Button from '@/components/ui/Button';
-import AuthModal from '@/components/auth/AuthModal';
-import { Briefcase, User, LogOut, Menu, X } from 'lucide-react';
+import AuthModal from "@/components/auth/AuthModal";
+import Button from "@/components/ui/Button";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { logout } from "@/lib/redux/slices/authSlice";
+import { Briefcase, LogOut, Menu, User, X } from "lucide-react";
+import React, { useState } from "react";
 
 interface HeaderProps {
   onAuthSuccess?: () => void;
@@ -15,9 +15,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onAuthSuccess }) => {
   const dispatch = useAppDispatch();
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
-  
+
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ onAuthSuccess }) => {
     setMobileMenuOpen(false);
   };
 
-  const handleAuthClick = (mode: 'login' | 'register') => {
+  const handleAuthClick = (mode: "login" | "register") => {
     setAuthMode(mode);
     setAuthModalOpen(true);
     setMobileMenuOpen(false);
@@ -50,9 +50,7 @@ const Header: React.FC<HeaderProps> = ({ onAuthSuccess }) => {
             {/* Logo */}
             <div className="flex items-center">
               <Briefcase className="h-8 w-8 text-blue-600" />
-              <h1 className="ml-2 text-xl font-bold text-gray-900">
-                JobBoard
-              </h1>
+              <h1 className="ml-2 text-xl font-bold text-gray-900">JobBoard</h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -80,14 +78,11 @@ const Header: React.FC<HeaderProps> = ({ onAuthSuccess }) => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleAuthClick('login')}
+                    onClick={() => handleAuthClick("login")}
                   >
-                    Sign In
+                    Login
                   </Button>
-                  <Button
-                    size="sm"
-                    onClick={() => handleAuthClick('register')}
-                  >
+                  <Button size="sm" onClick={() => handleAuthClick("register")}>
                     Sign Up
                   </Button>
                 </div>
@@ -138,14 +133,14 @@ const Header: React.FC<HeaderProps> = ({ onAuthSuccess }) => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => handleAuthClick('login')}
+                    onClick={() => handleAuthClick("login")}
                     className="w-full justify-start"
                   >
-                    Sign In
+                    Login
                   </Button>
                   <Button
                     size="sm"
-                    onClick={() => handleAuthClick('register')}
+                    onClick={() => handleAuthClick("register")}
                     className="w-full"
                   >
                     Sign Up

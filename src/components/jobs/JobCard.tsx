@@ -1,12 +1,17 @@
 // src/components/jobs/JobCard.tsx
-'use client';
+"use client";
 
-import React from 'react';
-import { Job } from '@/types';
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
-import { formatRelativeDate, truncateText } from '@/lib/utils';
-import { MapPin, Building, Clock, DollarSign } from 'lucide-react';
+import React from "react";
+import { Job } from "@/types";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import { formatRelativeDate, truncateText } from "@/lib/utils";
+import { MapPin, Building, Clock, DollarSign } from "lucide-react";
 
 interface JobCardProps {
   job: Job;
@@ -15,7 +20,7 @@ interface JobCardProps {
   showApplyButton?: boolean;
 }
 
-const JobCard: React.FC<JobCardProps> = ({ 
+const JobCard: React.FC<JobCardProps> = ({
   job,
   onViewDetails,
   onApply,
@@ -42,31 +47,33 @@ const JobCard: React.FC<JobCardProps> = ({
             {job.type}
           </span>
         </div>
-        
+
         <div className="flex items-center text-gray-600 mb-1">
           <Building className="w-4 h-4 mr-2" />
           <span className="text-sm font-medium">{job.company}</span>
         </div>
-        
+
         <div className="flex items-center text-gray-500 mb-2">
           <MapPin className="w-4 h-4 mr-2" />
           <span className="text-sm">{job.location}</span>
         </div>
-        
-        <div className="flex items-center text-green-600 mb-2">
+
+        <div className="flex items-center text-blue-500 mb-2">
           <DollarSign className="w-4 h-4 mr-2" />
           <span className="text-sm font-medium">{job.salary}</span>
         </div>
       </CardHeader>
-      
+
       <CardContent>
         <p className="text-gray-600 text-sm mb-4">
           {truncateText(job.description, 120)}
         </p>
-        
+
         {job.requirements && job.requirements.length > 0 && (
           <div className="mb-4">
-            <p className="text-xs font-medium text-gray-700 mb-2">Key Requirements:</p>
+            <p className="text-xs font-medium text-gray-700 mb-2">
+              Key Requirements:
+            </p>
             <div className="flex flex-wrap gap-1">
               {job.requirements.slice(0, 3).map((req, index) => (
                 <span
@@ -84,13 +91,13 @@ const JobCard: React.FC<JobCardProps> = ({
             </div>
           </div>
         )}
-        
+
         <div className="flex items-center text-gray-400 text-xs">
           <Clock className="w-3 h-3 mr-1" />
           <span>Posted {formatRelativeDate(job.postedDate)}</span>
         </div>
       </CardContent>
-      
+
       <CardFooter className="flex gap-2">
         <Button
           variant="outline"
@@ -101,11 +108,7 @@ const JobCard: React.FC<JobCardProps> = ({
           View Details
         </Button>
         {showApplyButton && (
-          <Button
-            size="sm"
-            onClick={handleApply}
-            className="flex-1"
-          >
+          <Button size="sm" onClick={handleApply} className="flex-1">
             Apply Now
           </Button>
         )}

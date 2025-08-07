@@ -1,29 +1,32 @@
 // src/lib/redux/slices/applicationSlice.ts
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { ApplicationState, JobApplication } from '@/types';
-import { applicationApi } from '@/lib/api/applicationApi';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { ApplicationState, JobApplication } from "@/types";
+import { applicationApi } from "@/lib/api/applicationApi";
 
 // Async thunks
 export const submitApplication = createAsyncThunk(
-  'applications/submitApplication',
-  async (applicationData: Omit<JobApplication, 'id' | 'appliedDate'>, { rejectWithValue }) => {
+  "applications/submitApplication",
+  async (
+    applicationData: Omit<JobApplication, "id" | "appliedDate">,
+    { rejectWithValue }
+  ) => {
     try {
       const response = await applicationApi.submitApplication(applicationData);
       return response;
     } catch (error: any) {
-      return rejectWithValue(error.message || 'Failed to submit application');
+      return rejectWithValue(error.message || "Failed to submit application");
     }
   }
 );
 
 export const fetchUserApplications = createAsyncThunk(
-  'applications/fetchUserApplications',
+  "applications/fetchUserApplications",
   async (userEmail: string, { rejectWithValue }) => {
     try {
       const response = await applicationApi.getUserApplications(userEmail);
       return response;
     } catch (error: any) {
-      return rejectWithValue(error.message || 'Failed to fetch applications');
+      return rejectWithValue(error.message || "Failed to fetch applications");
     }
   }
 );
@@ -33,16 +36,16 @@ const initialState: ApplicationState = {
   applications: [],
   loading: false,
   error: null,
-  submissionStatus: 'idle',
+  submissionStatus: "idle",
 };
 
 // Application slice
 const applicationSlice = createSlice({
-  name: 'applications',
+  name: "applications",
   initialState,
   reducers: {
     resetSubmissionStatus: (state) => {
-      state.submissionStatus = 'idle';
+      state.submissionStatus = "idle";
       state.error = null;
     },
     clearError: (state) => {
@@ -56,16 +59,16 @@ const applicationSlice = createSlice({
     builder
       // Submit application cases
       .addCase(submitApplication.pending, (state) => {
-        state.submissionStatus = 'loading';
+        state.submissionStatus = "loading";
         state.error = null;
       })
       .addCase(submitApplication.fulfilled, (state, action) => {
-        state.submissionStatus = 'success';
+        state.submissionStatus = "success";
         state.applications.push(action.payload);
         state.error = null;
       })
       .addCase(submitApplication.rejected, (state, action) => {
-        state.submissionStatus = 'error';
+        state.submissionStatus = "error";
         state.error = action.payload as string;
       })
       // Fetch user applications cases
@@ -85,5 +88,6 @@ const applicationSlice = createSlice({
   },
 });
 
-export const { resetSubmissionStatus, clearError, clearApplications } = applicationSlice.actions;
+export const { resetSubmissionStatus, clearError, clearApplications } =
+  applicationSlice.actions;
 export default applicationSlice.reducer;

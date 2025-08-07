@@ -1,21 +1,22 @@
+/* eslint-disable react/no-unescaped-entities */
 // src/components/jobs/JobFilters.tsx
-'use client';
+"use client";
 
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
-import { setFilters, clearFilters } from '@/lib/redux/slices/jobSlice';
-import Input from '@/components/ui/Input';
-import Select from '@/components/ui/Select';
-import Button from '@/components/ui/Button';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Search, X } from 'lucide-react';
+import React from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { setFilters, clearFilters } from "@/lib/redux/slices/jobSlice";
+import Input from "@/components/ui/Input";
+import Select from "@/components/ui/Select";
+import Button from "@/components/ui/Button";
+import { Card, CardContent } from "@/components/ui/Card";
+import { Search, X } from "lucide-react";
 
 const jobTypeOptions = [
-  { value: '', label: 'All Types' },
-  { value: 'Full-time', label: 'Full-time' },
-  { value: 'Part-time', label: 'Part-time' },
-  { value: 'Contract', label: 'Contract' },
-  { value: 'Remote', label: 'Remote' },
+  { value: "", label: "All Types" },
+  { value: "Full-time", label: "Full-time" },
+  { value: "Part-time", label: "Part-time" },
+  { value: "Contract", label: "Contract" },
+  { value: "Remote", label: "Remote" },
 ];
 
 const JobFilters: React.FC = () => {
@@ -56,14 +57,14 @@ const JobFilters: React.FC = () => {
               />
             </div>
           </div>
-          
+
           <Select
             options={jobTypeOptions}
             value={filters.type}
             onChange={handleTypeChange}
             placeholder="Job Type"
           />
-          
+
           <Input
             type="text"
             placeholder="Location"
@@ -71,7 +72,7 @@ const JobFilters: React.FC = () => {
             onChange={handleLocationChange}
           />
         </div>
-        
+
         {hasActiveFilters && (
           <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
             <div className="flex flex-wrap gap-2">
@@ -91,7 +92,7 @@ const JobFilters: React.FC = () => {
                 </span>
               )}
             </div>
-            
+
             <Button
               variant="ghost"
               size="sm"

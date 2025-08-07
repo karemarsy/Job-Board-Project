@@ -1,20 +1,20 @@
 // src/components/JobBoardPage.tsx
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
-import { initializeAuth } from '@/lib/redux/slices/authSlice';
-import { Job } from '@/types';
-import JobFilters from '@/components/jobs/JobFilters';
-import JobList from '@/components/jobs/JobList';
-import JobDetails from '@/components/jobs/JobDetails';
-import ApplicationForm from '@/components/jobs/ApplicationForm';
-import AuthModal from '@/components/auth/AuthModal';
+import React, { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { initializeAuth } from "@/lib/redux/slices/authSlice";
+import { Job } from "@/types";
+import JobFilters from "@/components/jobs/JobFilters";
+import JobList from "@/components/jobs/JobList";
+import JobDetails from "@/components/jobs/JobDetails";
+import ApplicationForm from "@/components/jobs/ApplicationForm";
+import AuthModal from "@/components/auth/AuthModal";
 
 const JobBoardPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
-  
+
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [applicationJob, setApplicationJob] = useState<Job | null>(null);
   const [authModalOpen, setAuthModalOpen] = useState(false);

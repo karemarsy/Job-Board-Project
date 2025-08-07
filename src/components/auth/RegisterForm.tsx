@@ -1,26 +1,27 @@
-// src/components/auth/RegisterForm.tsx
-'use client';
+"use client";
 
-import React, { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useAppDispatch, useAppSelector } from '@/lib/redux/hooks';
-import { registerUser, clearError } from '@/lib/redux/slices/authSlice';
-import { RegisterData } from '@/types';
-import Button from '@/components/ui/Button';
-import Input from '@/components/ui/Input';
-import { Card, CardHeader, CardContent } from '@/components/ui/Card';
+import Button from "@/components/ui/Button";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import Input from "@/components/ui/Input";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+import { clearError, registerUser } from "@/lib/redux/slices/authSlice";
+import { RegisterData } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const registerSchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 interface RegisterFormProps {
   onToggleForm: () => void;
@@ -29,7 +30,7 @@ interface RegisterFormProps {
 const RegisterForm: React.FC<RegisterFormProps> = ({ onToggleForm }) => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.auth);
-  
+
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onToggleForm }) => {
   useEffect(() => {
     // Clear any previous errors when component mounts
     dispatch(clearError());
-    
+
     return () => {
       // Clear errors when component unmounts
       dispatch(clearError());
@@ -66,7 +67,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onToggleForm }) => {
           Sign up to start applying for jobs
         </p>
       </CardHeader>
-      
+
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {error && (
@@ -74,43 +75,43 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onToggleForm }) => {
               {error}
             </div>
           )}
-          
+
           <Input
-            {...register('name')}
+            {...register("name")}
             type="text"
             label="Full Name"
             placeholder="Enter your full name"
             error={errors.name?.message}
             autoComplete="name"
           />
-          
+
           <Input
-            {...register('email')}
+            {...register("email")}
             type="email"
             label="Email"
             placeholder="Enter your email"
             error={errors.email?.message}
             autoComplete="email"
           />
-          
+
           <Input
-            {...register('password')}
+            {...register("password")}
             type="password"
             label="Password"
             placeholder="Enter your password"
             error={errors.password?.message}
             autoComplete="new-password"
           />
-          
+
           <Input
-            {...register('confirmPassword')}
+            {...register("confirmPassword")}
             type="password"
             label="Confirm Password"
             placeholder="Confirm your password"
             error={errors.confirmPassword?.message}
             autoComplete="new-password"
           />
-          
+
           <Button
             type="submit"
             loading={loading}
@@ -120,16 +121,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onToggleForm }) => {
             Create Account
           </Button>
         </form>
-        
+
         <div className="mt-6 text-center">
           <p className="text-gray-600">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <button
               type="button"
               onClick={onToggleForm}
               className="text-blue-600 hover:text-blue-700 font-medium"
             >
-              Sign in here
+              Login here
             </button>
           </p>
         </div>

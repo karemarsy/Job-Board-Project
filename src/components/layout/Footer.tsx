@@ -1,6 +1,6 @@
 // src/components/layout/Footer.tsx
-import React from 'react';
-import { Briefcase } from 'lucide-react';
+import React from "react";
+import { Briefcase } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
               JobBoard
             </span>
           </div>
-          
+
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
             <p className="text-sm text-gray-600">
               © 2024 JobBoard. All rights reserved.
@@ -31,10 +31,11 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <p className="text-xs text-gray-500">
-            This is a demo application built with React, Next.js, Redux Toolkit, and Tailwind CSS.
+            This is a demo application built with React, Next.js, Redux Toolkit,
+            and Tailwind CSS.
           </p>
         </div>
       </div>

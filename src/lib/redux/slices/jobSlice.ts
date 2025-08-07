@@ -1,29 +1,29 @@
 // src/lib/redux/slices/jobSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { JobState, Job, JobFilters } from '@/types';
-import { jobApi } from '@/lib/api/jobApi';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { JobState, Job, JobFilters } from "@/types";
+import { jobApi } from "@/lib/api/jobApi";
 
 // Async thunks
 export const fetchJobs = createAsyncThunk(
-  'jobs/fetchJobs',
+  "jobs/fetchJobs",
   async (filters: JobFilters = {}, { rejectWithValue }) => {
     try {
       const response = await jobApi.getJobs(filters);
       return response;
     } catch (error: any) {
-      return rejectWithValue(error.message || 'Failed to fetch jobs');
+      return rejectWithValue(error.message || "Failed to fetch jobs");
     }
   }
 );
 
 export const fetchJobById = createAsyncThunk(
-  'jobs/fetchJobById',
+  "jobs/fetchJobById",
   async (jobId: number, { rejectWithValue }) => {
     try {
       const response = await jobApi.getJobById(jobId);
       return response;
     } catch (error: any) {
-      return rejectWithValue(error.message || 'Failed to fetch job details');
+      return rejectWithValue(error.message || "Failed to fetch job details");
     }
   }
 );
@@ -35,9 +35,9 @@ const initialState: JobState = {
   loading: false,
   error: null,
   filters: {
-    search: '',
-    type: '',
-    location: '',
+    search: "",
+    type: "",
+    location: "",
   },
   pagination: {
     page: 1,
@@ -48,19 +48,22 @@ const initialState: JobState = {
 
 // Job slice
 const jobSlice = createSlice({
-  name: 'jobs',
+  name: "jobs",
   initialState,
   reducers: {
-    setFilters: (state, action: PayloadAction<Partial<typeof initialState.filters>>) => {
+    setFilters: (
+      state,
+      action: PayloadAction<Partial<typeof initialState.filters>>
+    ) => {
       state.filters = { ...state.filters, ...action.payload };
       // Reset to first page when filters change
       state.pagination.page = 1;
     },
     clearFilters: (state) => {
       state.filters = {
-        search: '',
-        type: '',
-        location: '',
+        search: "",
+        type: "",
+        location: "",
       };
       state.pagination.page = 1;
     },
@@ -108,5 +111,11 @@ const jobSlice = createSlice({
   },
 });
 
-export const { setFilters, clearFilters, setPage, clearCurrentJob, clearError } = jobSlice.actions;
+export const {
+  setFilters,
+  clearFilters,
+  setPage,
+  clearCurrentJob,
+  clearError,
+} = jobSlice.actions;
 export default jobSlice.reducer;
