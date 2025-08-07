@@ -58,9 +58,9 @@ const JobCard: React.FC<JobCardProps> = ({
           <span className="text-sm">{job.location}</span>
         </div>
 
-        <div className="flex items-center text-blue-500 mb-2">
+        <div className="flex items-center text-gray-500 mb-2">
           <DollarSign className="w-4 h-4 mr-2" />
-          <span className="text-sm font-medium">{job.salary}</span>
+          <span className="text-sm font-medium text-blue-500">{job.salary}</span>
         </div>
       </CardHeader>
 
