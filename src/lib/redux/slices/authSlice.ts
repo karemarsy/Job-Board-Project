@@ -1,4 +1,6 @@
 // src/lib/redux/slices/authSlice.ts
+// ONLY CHANGE: Replace the two 'any' types with proper types
+
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AuthState, LoginCredentials, RegisterData, User } from "@/types";
 import { authApi } from "@/lib/api/authApi";
@@ -10,8 +12,9 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await authApi.login(credentials);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Login failed");
+    } catch (error: unknown) { // CHANGE 1: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Login failed";
+      return rejectWithValue(message);
     }
   }
 );
@@ -22,8 +25,9 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await authApi.register(userData);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Registration failed");
+    } catch (error: unknown) { // CHANGE 2: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Registration failed";
+      return rejectWithValue(message);
     }
   }
 );

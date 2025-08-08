@@ -34,7 +34,7 @@ describe("LoginForm", () => {
     jest.clearAllMocks();
   });
 
-  const renderWithStore = (store: any) => {
+    const renderWithStore = (store: ReturnType<typeof createMockStore>) => {
     return render(
       <Provider store={store}>
         <LoginForm onToggleForm={mockOnToggleForm} />

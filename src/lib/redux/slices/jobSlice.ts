@@ -1,6 +1,6 @@
 // src/lib/redux/slices/jobSlice.ts
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { JobState, Job, JobFilters } from "@/types";
+import { JobState, JobFilters } from "@/types";
 import { jobApi } from "@/lib/api/jobApi";
 
 // Async thunks
@@ -10,8 +10,9 @@ export const fetchJobs = createAsyncThunk(
     try {
       const response = await jobApi.getJobs(filters);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Failed to fetch jobs");
+    } catch (error: unknown) { // CHANGE: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Failed to fetch jobs";
+      return rejectWithValue(message);
     }
   }
 );
@@ -22,8 +23,9 @@ export const fetchJobById = createAsyncThunk(
     try {
       const response = await jobApi.getJobById(jobId);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Failed to fetch job details");
+    } catch (error: unknown) { // CHANGE: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Failed to fetch job details";
+      return rejectWithValue(message);
     }
   }
 );

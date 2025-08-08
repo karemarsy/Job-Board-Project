@@ -14,7 +14,7 @@ import { Job, JobApplication } from "@/types";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
-import { Card, CardHeader, CardContent } from "@/components/ui/Card";
+import { Card, CardContent } from "@/components/ui/Card";
 import { X, CheckCircle, AlertCircle } from "lucide-react";
 
 const applicationSchema = z.object({
@@ -52,7 +52,6 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<ApplicationFormData>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {

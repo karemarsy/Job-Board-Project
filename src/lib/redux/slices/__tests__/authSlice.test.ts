@@ -8,7 +8,12 @@ import authSlice, {
   setUser,
   initializeAuth,
 } from "../authSlice";
-import { AuthState, User } from "@/types";
+import { User } from "@/types";
+
+// Define the store type and root state type
+type TestStore = ReturnType<typeof configureStore<{
+  auth: ReturnType<typeof authSlice>;
+}>>;
 
 // Mock the API
 jest.mock("@/lib/api/authApi", () => ({
@@ -19,7 +24,7 @@ jest.mock("@/lib/api/authApi", () => ({
 }));
 
 describe("authSlice", () => {
-  let store: ReturnType<typeof configureStore>;
+  let store: TestStore;
 
   beforeEach(() => {
     store = configureStore({

@@ -13,8 +13,9 @@ export const submitApplication = createAsyncThunk(
     try {
       const response = await applicationApi.submitApplication(applicationData);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Failed to submit application");
+    } catch (error: unknown) { // CHANGE: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Failed to submit application";
+      return rejectWithValue(message);
     }
   }
 );
@@ -25,8 +26,9 @@ export const fetchUserApplications = createAsyncThunk(
     try {
       const response = await applicationApi.getUserApplications(userEmail);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.message || "Failed to fetch applications");
+    } catch (error: unknown) { // CHANGE: Replace 'any' with 'unknown'
+      const message = error instanceof Error ? error.message : "Failed to fetch applications";
+      return rejectWithValue(message);
     }
   }
 );

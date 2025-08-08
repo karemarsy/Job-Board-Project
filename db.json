@@ -32,6 +32,39 @@
       "description": "We need a versatile full stack developer...",
       "requirements": ["React", "Node.js", "MongoDB"],
       "postedDate": "2025-07-27"
+    },
+    {
+      "id": 4,
+      "title": "Full Stack Developer",
+      "company": "WebSolutions",
+      "location": "New York, NY",
+      "type": "Contract",
+      "salary": "$60/hour",
+      "description": "We need a versatile full stack developer...",
+      "requirements": ["React", "Node.js", "MongoDB"],
+      "postedDate": "2025-07-27"
+    },
+    {
+      "id": 5,
+      "title": "Full Stack Developer",
+      "company": "WebSolutions",
+      "location": "New York, NY",
+      "type": "Contract",
+      "salary": "$60/hour",
+      "description": "We need a versatile full stack developer...",
+      "requirements": ["React", "Node.js", "MongoDB"],
+      "postedDate": "2025-07-27"
+    },
+    {
+      "id": 6,
+      "title": "Full Stack Developer",
+      "company": "WebSolutions",
+      "location": "New York, NY",
+      "type": "Contract",
+      "salary": "$60/hour",
+      "description": "We need a versatile full stack developer...",
+      "requirements": ["React", "Node.js", "MongoDB"],
+      "postedDate": "2025-07-27"
     }
   ],
   "applications": [],

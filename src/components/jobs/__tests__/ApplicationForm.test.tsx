@@ -7,6 +7,16 @@ import ApplicationForm from "../ApplicationForm";
 import applicationSlice from "@/lib/redux/slices/applicationSlice";
 import { Job } from "@/types";
 
+// Define the types to match your slice
+type SubmissionStatus = "idle" | "loading" | "success" | "error";
+
+interface ApplicationState {
+  applications: [];
+  loading: boolean;
+  error: string | null;
+  submissionStatus: SubmissionStatus;
+}
+
 const mockJob: Job = {
   id: 1,
   title: "Frontend Developer",
@@ -19,7 +29,7 @@ const mockJob: Job = {
   postedDate: "2024-01-15",
 };
 
-const createMockStore = (initialState = {}) => {
+const createMockStore = (initialState: Partial<ApplicationState> = {}) => {
   return configureStore({
     reducer: {
       applications: applicationSlice,
@@ -29,7 +39,7 @@ const createMockStore = (initialState = {}) => {
         applications: [],
         loading: false,
         error: null,
-        submissionStatus: "idle",
+        submissionStatus: "idle" as SubmissionStatus,
         ...initialState,
       },
     },
@@ -52,7 +62,7 @@ describe("ApplicationForm", () => {
     jest.clearAllMocks();
   });
 
-  const renderWithStore = (store: any) => {
+  const renderWithStore = (store: ReturnType<typeof createMockStore>) => {
     return render(
       <Provider store={store}>
         <ApplicationForm
